@@ -28,8 +28,8 @@ COPY --from=web-build /web/dist /usr/share/nginx/html
 # Nginx config
 COPY nginx.prod.conf /etc/nginx/http.d/default.conf
 
-# Start script
-RUN printf '#!/bin/sh\nnode dist/migrate.js && node dist/seed.js\nnginx\nexec node dist/index.js\n' > /app/start.sh && chmod +x /app/start.sh
+# Start script - migrate, seed, start nginx + API
+RUN printf '#!/bin/sh\nset -e\nnode dist/migrate.js\nnode dist/seed.js\nnginx\nexec node dist/index.js\n' > /app/start.sh && chmod +x /app/start.sh
 
 EXPOSE 3000
 CMD ["/app/start.sh"]
