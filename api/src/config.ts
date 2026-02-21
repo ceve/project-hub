@@ -1,5 +1,5 @@
 export const config = {
-  port: parseInt(process.env.API_PORT || '3001', 10),
+  port: parseInt(process.env.PORT || '3001', 10),
   jwtSecret: process.env.JWT_SECRET || 'dev-secret-change-me',
   jwtExpiresIn: parseInt(process.env.JWT_EXPIRES_IN || '86400', 10),
   db: {
